@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="playlist-page__toolbar">
+  <mat-icon class="home-icon" routerLink="/">home</mat-icon>
+  <h1>Playlist Explorer</h1>
+  <div class="search-input">
+    <form>
+      <mat-form-field floatLabel="never" color="primary">
+        <input [(ngModel)]="searchText" class="toolbar-search" type="text"  name="searchText" matInput>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+</mat-toolbar>
+<div class="playlist-page__content">
+  <mat-card *ngFor="let playlist of ( playlistCollection$ | async)! | appFilter: searchText" class="playlist-page__content__card">
+    <mat-card-header class="playlist-page__content__card__header">
+      <mat-card-title>{{playlist.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="playlist-page__content__card_content">
+      <img mat-card-image src="{{ playlist.artwork }}">
+    </mat-card-content>
+  </mat-card>
+</div>
